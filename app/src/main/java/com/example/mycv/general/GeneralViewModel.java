@@ -1,12 +1,16 @@
 package com.example.mycv.general;
 
+import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.mycv.db.App;
 import com.example.mycv.db.AppDatabase;
+import com.example.mycv.db.CvDao;
 import com.example.mycv.db.CvService;
 import com.example.mycv.db.MyResponse;
 import com.google.gson.Gson;
@@ -18,6 +22,8 @@ import org.reactivestreams.Subscriber;
 import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
@@ -35,11 +41,21 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class GeneralViewModel extends ViewModel{
+public class GeneralViewModel extends AndroidViewModel{
     public MutableLiveData<MyResponse> result = new MutableLiveData<>();
     public MutableLiveData<Boolean> error = new MutableLiveData<>();
     CompositeDisposable compositeDisposable = new CompositeDisposable();
-    AppDatabase db = App.getInstance().getDatabase();
+
+    @Inject
+    AppDatabase mAppDatabase;
+
+
+
+    public GeneralViewModel(@NonNull Application application) {
+        super(application);
+        ((App)getApplication()).getComponent().inject(this);
+    }
+
 
     private CvService getTestService() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -64,7 +80,7 @@ public class GeneralViewModel extends ViewModel{
                         new DisposableObserver<MyResponse>() {
                             @Override
                             public void onNext(MyResponse value) {
-                                db.cvDao().insert(value);
+                                mAppDatabase.cvDao().insert(value);
                                 getResponseFromBase();
                                 error.postValue(false);
                                 onComplete();
@@ -92,7 +108,7 @@ public class GeneralViewModel extends ViewModel{
 
     public void getResponseFromBase() {
         compositeDisposable.add(
-                db.cvDao().getAll().
+                mAppDatabase.cvDao().getAll().
                         toObservable().
                         observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Consumer<List<MyResponse>>() {

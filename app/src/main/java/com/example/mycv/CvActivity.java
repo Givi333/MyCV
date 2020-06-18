@@ -12,12 +12,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.example.mycv.db.App;
+import com.example.mycv.db.AppDatabase;
+import com.example.mycv.db.CvDao;
 import com.example.mycv.general.GeneralFragment;
 import com.example.mycv.interfaces.ActivityAction;
 import com.example.mycv.programs.ProgramsFragment;
 import com.example.mycv.skills.SkillsFragment;
 import com.example.mycv.workplace.WorkplacesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import javax.inject.Inject;
 
 public class CvActivity extends AppCompatActivity implements ActivityAction{
 
@@ -28,6 +33,8 @@ public class CvActivity extends AppCompatActivity implements ActivityAction{
     private Toolbar toolbar;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +42,7 @@ public class CvActivity extends AppCompatActivity implements ActivityAction{
         initUI();
         setSupportActionBar(toolbar);
         showGeneral();
+
     }
 
     private void initUI() {

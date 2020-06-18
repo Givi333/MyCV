@@ -4,24 +4,26 @@ import android.app.Application;
 
 import androidx.room.Room;
 
+import com.example.mycv.di.component.ApplicationComponent;
+import com.example.mycv.di.component.DaggerApplicationComponent;
+import com.example.mycv.di.module.ApplicationModule;
+import com.example.mycv.di.module.DatabaseModule;
+
 public class App extends Application {
-
-    public static App instance;
-
-    private AppDatabase database;
+    protected ApplicationComponent mApplicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
-        database = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "cvBase.db").allowMainThreadQueries().build();
+        mApplicationComponent = DaggerApplicationComponent
+                .builder()
+                .applicationModule(new ApplicationModule(this))
+                .databaseModule(new DatabaseModule(this))
+                .build();
+        mApplicationComponent.inject(this);
     }
 
-    public static App getInstance() {
-        return instance;
-    }
-
-    public AppDatabase getDatabase() {
-        return database;
+    public ApplicationComponent getComponent() {
+        return mApplicationComponent;
     }
 }
