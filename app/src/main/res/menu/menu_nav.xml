@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/general"
+        android:icon="@drawable/ic_menu_general"
+        android:title="@string/menu_general_label"/>
+    <item
+        android:id="@+id/workplaces"
+        android:icon="@drawable/ic_menu_workplace"
+        android:title="@string/menu_workplaces_label" />
+    <item
+        android:id="@+id/programs"
+        android:icon="@drawable/ic_menu_android"
+        android:title="@string/menu_programs_label" />
+    <item
+        android:id="@+id/skills"
+        android:icon="@drawable/ic_menu_skills"
+        android:title="@string/menu_skills_label" />
+    <item
+        android:id="@+id/contacts2"
+        android:icon="@drawable/ic_menu_contacts"
+        android:title="@string/menu_contacts_label" />
+</menu>

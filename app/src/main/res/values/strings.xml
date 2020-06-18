@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">MyCV</string>
+    <string name="menu_general_label">Обо мне</string>
+    <string name="menu_workplaces_label">Карьера</string>
+    <string name="menu_programs_label">Программы</string>
+    <string name="menu_skills_label">Навыки</string>
+    <string name="menu_contacts_label">Контакты</string>
+    <string name="city_label">Город:</string>
+    <string name="age_label">Возраст:</string>
+    <string name="exp_label">Опыт работы:</string>
+    <string name="exp_dev_label">Опыт работы в разработке:</string>
+    <string name="education_label">Образование:</string>
+    <string name="university_label">Университет:</string>
+    <string name="fakulty_label">Факультет:</string>
+    <string name="education_years_label">Годы обучения:</string>
+    <string name="years1">лет</string>
+    <string name="years2">год</string>
+    <string name="years3">года</string>
+    <string name="languages_label">Языки:</string>
+    <string name="databases_label">Базы данных:</string>
+    <string name="network_label">Работа с сетью:</string>
+    <string name="other_label">Дополнительно:</string>
+    <string name="workplace_resposibilities_label">Обязанности:</string>
+    <string name="workplace_stack_label">Технологии:</string>
+    <string name="contacts_phone">Телефон:</string>
+    <string name="contacts_email">E-mail:</string>
+    <string name="connection_lost">Для полноценной работы необходимо интернет-соединение</string>
+
+
+</resources>
