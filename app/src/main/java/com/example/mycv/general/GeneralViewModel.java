@@ -75,7 +75,6 @@ public class GeneralViewModel extends AndroidViewModel{
     public void getInfo() {
         compositeDisposable.add(getTestService().getInfo()
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(
                         new DisposableObserver<MyResponse>() {
                             @Override

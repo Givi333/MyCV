@@ -33,7 +33,7 @@ public class DatabaseModule {
                 mContext,
                 AppDatabase.class,
                 mDBName
-        ).allowMainThreadQueries()
+        )
          .fallbackToDestructiveMigration().build();
     }
 
